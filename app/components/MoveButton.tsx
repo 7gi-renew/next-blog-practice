@@ -10,8 +10,6 @@ const MoveButton = ({ area }) => {
     e.preventDefault;
     const dataArea = e.target.dataset.area;
 
-    console.log(dataArea);
-
     switch (dataArea) {
       case "topBlog":
         router.push("/blogs/");
@@ -23,9 +21,9 @@ const MoveButton = ({ area }) => {
   };
 
   return (
-    <a className="btn" onClick={onClickArticle} data-area={area}>
+    <button className="btn" onClick={onClickArticle} data-area={area}>
       もっと見る
-    </a>
+    </button>
   );
 };
 

@@ -22,13 +22,15 @@ export default async function Page() {
   const posts: any = await getBlogPosts();
   const microData = await posts;
 
+  console.log(microData);
+
   return (
     <>
       <div className="mb-[36px]">
         <h2 className="font-bold text-2xl">個人記事</h2>
         <div className="grid grid-cols-4 gap-4">
           {qiitaData.map((elem: article) => {
-            return <Cards href={elem.url} heading={elem.title} article={true} target={true} />;
+            return <Cards href={elem.url} heading={elem.title} article={true} target={true} thumb={""} />;
           })}
         </div>
         <MoveButton area="topQiita" />
@@ -36,8 +38,8 @@ export default async function Page() {
       <div>
         <h2 className="font-bold text-2xl">ブログ記事</h2>
         <div className="grid grid-cols-4 gap-4">
-          {microData.slice(0, 4).map((elem: BlogTypes) => {
-            return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} />;
+          {microData.map((elem: BlogTypes) => {
+            return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} thumb={elem.eyecatch!.url} />;
           })}
         </div>
         <MoveButton area="topBlog" />

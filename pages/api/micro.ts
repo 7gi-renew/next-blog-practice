@@ -4,13 +4,16 @@ import { client } from "../../libs/microcms";
 export type BlogTypes = {
   id: string;
   title: string;
+  eyecatch?: {
+    url: string;
+  };
 };
 
 export default async function getBlogPosts(): Promise<BlogTypes[]> {
   const data = await client.get({
     endpoint: "blogs",
     queries: {
-      fields: "id,title,content",
+      fields: "id,title,content,eyecatch",
       limit: 4,
     },
   });

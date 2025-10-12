@@ -5,6 +5,9 @@ import Cards from "../components/Cards";
 type Props = {
   id: string;
   title: string;
+  eyecatch: {
+    url: string;
+  };
 };
 
 async function getBlogPosts(): Promise<Props[]> {
@@ -26,7 +29,7 @@ export default async function Page() {
       <h2 className="font-bold text-2xl">ブログ記事一覧</h2>
       <div className="grid grid-cols-4 gap-4">
         {blogData.map((elem: Props) => {
-          return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} />;
+          return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} thumb={elem.eyecatch.url} />;
         })}
       </div>
     </>

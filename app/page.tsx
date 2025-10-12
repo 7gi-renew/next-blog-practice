@@ -22,8 +22,6 @@ export default async function Page() {
   const posts: any = await getBlogPosts();
   const microData = await posts;
 
-  console.log(microData);
-
   return (
     <>
       <div className="mb-[36px]">

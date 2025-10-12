@@ -22,7 +22,7 @@ export default async function page() {
       <h2 className="font-bold text-2xl">個人記事一覧</h2>
       <div className="grid grid-cols-4 gap-4">
         {qiitaData.map((elem: article) => {
-          return <Cards href={elem.url} heading={elem.title} article={true} target={true} />;
+          return <Cards href={elem.url} heading={elem.title} article={true} target={true} thumb={""} />;
         })}
       </div>
     </>

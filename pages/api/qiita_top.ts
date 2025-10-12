@@ -16,9 +16,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json({ data });
     } catch (error) {
       console.error("Qiita fetch error:", error);
-      return res.status(500).json({ error: "Failed to load data" });
+      return res.status(500).json({ error: "failed to load data" });
     }
   } else {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({ error: "method not allowed" });
   }
 }

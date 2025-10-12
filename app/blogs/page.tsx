@@ -1,6 +1,3 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
 import { client } from "../../libs/microcms";
 import Cards from "../components/Cards";
 
@@ -20,17 +17,9 @@ async function getBlogPosts(): Promise<Props[]> {
   return data.contents;
 }
 
-export default function Page() {
-  const [blogData, setBlogData] = useState([]);
-
-  useEffect(() => {
-    const fetchBlogData = async () => {
-      const data: any = await getBlogPosts();
-      setBlogData(data);
-      console.log(data);
-    };
-    fetchBlogData();
-  }, []);
+export default async function Page() {
+  const data: any = await getBlogPosts();
+  const blogData = await data;
 
   return (
     <>

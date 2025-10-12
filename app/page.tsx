@@ -1,10 +1,9 @@
-"use client";
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
-import { useEffect, useState } from "react";
-import { client } from "../libs/microcms";
-import { useRouter } from "next/navigation";
 import Cards from "./components/Cards";
 import getBlogPosts, { BlogTypes } from "../pages/api/micro";
+import MoveButton from "./components/MoveButton";
 
 type article = {
   url: string;
@@ -13,52 +12,26 @@ type article = {
   date: string;
 };
 
-export default function Page() {
+export default async function Page() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const [qiitaData, setQiitaData] = useState([]);
-  const [microData, setMicroData] = useState([]);
 
-  const router = useRouter();
+  const res = await fetch(`${API_URL}/api/qiita_top`);
+  const articles = await res.json();
+  const qiitaData = await articles.data;
 
-  useEffect(() => {
-    const fetchQiita = async () => {
-      const res = await fetch(`${API_URL}/api/qiita`);
-      const articles = await res.json();
-      const gettingData = articles.data;
-      setQiitaData(gettingData);
-    };
-
-    const fetchMicro = async () => {
-      const posts: any = await getBlogPosts();
-      setMicroData(posts);
-    };
-
-    fetchQiita();
-    fetchMicro();
-  }, []);
-
-  const onClickArticle = (e) => {
-    e.preventDefault;
-    router.push("/articles/");
-  };
-
-  const onClickBlog = (e) => {
-    e.preventDefault;
-    router.push("/blogs/");
-  };
+  const posts: any = await getBlogPosts();
+  const microData = await posts;
 
   return (
     <>
       <div className="mb-[36px]">
         <h2 className="font-bold text-2xl">個人記事</h2>
         <div className="grid grid-cols-4 gap-4">
-          {qiitaData.slice(0, 4).map((elem: article) => {
+          {qiitaData.map((elem: article) => {
             return <Cards href={elem.url} heading={elem.title} article={true} target={true} />;
           })}
         </div>
-        <button className="btn" onClick={onClickArticle}>
-          もっと見る
-        </button>
+        <MoveButton area="topQiita" />
       </div>
       <div>
         <div className="grid grid-cols-4 gap-4">
@@ -66,9 +39,7 @@ export default function Page() {
             return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} />;
           })}
         </div>
-        <button className="btn" onClick={onClickBlog}>
-          もっと見る
-        </button>
+        <MoveButton area="topBlog" />
       </div>
     </>
   );

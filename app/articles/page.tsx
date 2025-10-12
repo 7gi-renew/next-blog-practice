@@ -1,6 +1,6 @@
-"use client";
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
-import React, { useEffect, useState } from "react";
 import Cards from "../components/Cards";
 
 type article = {
@@ -10,20 +10,12 @@ type article = {
   date: string;
 };
 
-export default function page() {
+export default async function page() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  const [qiitaData, setQiitaData] = useState([]);
 
-  useEffect(() => {
-    const fetchQiita = async () => {
-      const res = await fetch(`${API_URL}/api/qiita`);
-      const articles = await res.json();
-      const gettingData = articles.data;
-      setQiitaData(gettingData);
-    };
-
-    fetchQiita();
-  }, []);
+  const res = await fetch(`${API_URL}/api/qiita_all`);
+  const articles = await res.json();
+  const qiitaData = await articles.data;
 
   return (
     <>

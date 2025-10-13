@@ -25,22 +25,22 @@ export default async function Page() {
   return (
     <>
       <div className="mb-[36px]">
-        <h2 className="font-bold text-2xl">個人記事</h2>
+        <h2 className="font-bold text-2xl mb-6">個人記事</h2>
         <div className="grid grid-cols-4 gap-4">
           {qiitaData.map((elem: article) => {
             return <Cards href={elem.url} heading={elem.title} article={true} target={true} thumb={""} />;
           })}
         </div>
-        <MoveButton area="topQiita" />
+        <MoveButton className={"mt-4"} area="topQiita" />
       </div>
       <div>
-        <h2 className="font-bold text-2xl">ブログ記事</h2>
+        <h2 className="font-bold text-2xl mb-6">ブログ記事</h2>
         <div className="grid grid-cols-4 gap-4">
           {microData.map((elem: BlogTypes) => {
             return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} thumb={elem.eyecatch!.url} />;
           })}
         </div>
-        <MoveButton area="topBlog" />
+        <MoveButton className={"mt-4"} area="topBlog" />
       </div>
     </>
   );

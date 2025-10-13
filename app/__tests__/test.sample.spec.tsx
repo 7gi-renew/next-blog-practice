@@ -49,19 +49,19 @@ describe("Cardsコンポーネントのテスト", () => {
 
 describe("MoveButtonコンポーネントのテスト", () => {
   it("「もっと見る」の文字列を見れる", () => {
-    render(<MoveButton area={""} />);
+    render(<MoveButton className={""} area={""} />);
     expect(screen.getByText("もっと見る")).toBeInTheDocument();
   });
 
   it("areaで設定した文字列がdata-area属性の値と一致している", () => {
-    render(<MoveButton area={"topBlog"} />);
+    render(<MoveButton className={""} area={"topBlog"} />);
 
     const btn = screen.getByRole("button");
     expect(btn).toHaveAttribute("data-area", "topBlog");
   });
 
   it("topBlogに設定したボタンでは遷移先が/blog/になる", async () => {
-    render(<MoveButton area={"topBlog"} />);
+    render(<MoveButton className={""} area={"topBlog"} />);
 
     const btn = screen.getByRole("button");
 

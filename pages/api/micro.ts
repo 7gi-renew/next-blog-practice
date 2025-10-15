@@ -14,7 +14,6 @@ export default async function getBlogPosts(): Promise<BlogTypes[]> {
     endpoint: "blogs",
     queries: {
       fields: "id,title,content,eyecatch",
-      limit: 4,
     },
   });
   return data.contents;

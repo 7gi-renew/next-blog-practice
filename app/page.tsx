@@ -36,7 +36,7 @@ export default async function Page() {
       <div>
         <h2 className="font-bold text-2xl mb-6">ブログ記事</h2>
         <div className="grid grid-cols-4 gap-4">
-          {microData.map((elem: BlogTypes) => {
+          {microData.slice(0, 4).map((elem: BlogTypes) => {
             return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} thumb={elem.eyecatch!.url} />;
           })}
         </div>

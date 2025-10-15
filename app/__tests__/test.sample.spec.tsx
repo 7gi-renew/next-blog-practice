@@ -48,9 +48,9 @@ describe("Cardsコンポーネントのテスト", () => {
 });
 
 describe("MoveButtonコンポーネントのテスト", () => {
-  it("「もっと見る」の文字列を見れる", () => {
-    render(<MoveButton className={""} area={""} />);
-    expect(screen.getByText("もっと見る")).toBeInTheDocument();
+  it("「次へ進む」の文字列を見れる", async () => {
+    render(<MoveButton className={""} area={"topBlog"} />);
+    expect(screen.getByText("次へ進む")).toBeInTheDocument();
   });
 
   it("areaで設定した文字列がdata-area属性の値と一致している", () => {

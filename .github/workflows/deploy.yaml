@@ -1,12 +1,11 @@
-name: GitHub Actions Demo
-run-name: testing out GitHub Actions
+name: test in git
 on:
   push:
     branches:
       - main
 
 jobs:
-  installation&test:
+  git_flows:
     name: Workflows
     runs-on: ubuntu-latest
     env:

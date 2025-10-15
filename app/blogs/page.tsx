@@ -1,6 +1,7 @@
 import { client } from "../../libs/microcms";
 import getBlogPosts from "../../pages/api/micro";
 import Cards from "../components/Cards";
+import MoveButton from "../components/MoveButton";
 
 // ブログ記事の型定義
 type Props = {
@@ -17,12 +18,13 @@ export default async function Page() {
 
   return (
     <>
-      <h2 className="font-bold text-2xl mb-4">ブログ記事一覧</h2>
+      <h2 className="font-bold text-2xl mb-6">ブログ記事一覧</h2>
       <div className="grid grid-cols-4 gap-4">
         {blogData.map((elem: Props) => {
           return <Cards href={`/blogs/${elem.id}`} heading={elem.title} article={false} target={false} thumb={elem.eyecatch!.url} />;
         })}
       </div>
+      <MoveButton className={"mt-4"} area="HomeBack" />
     </>
   );
 }
